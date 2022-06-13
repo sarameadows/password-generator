@@ -56,6 +56,10 @@ var generatePassword = function () {
       while(randomPassword.length < passwordLength){
         randomPassword += alphabetString.charAt(Math.floor(Math.random() * alphabetString.length));
         randomPassword += alphabetString.charAt(Math.floor(Math.random() * alphabetString.length)).toUpperCase();
+        //if randomPassword becomes too long, cut it to desired length
+        if (randomPassword.length > passwordLength) {
+          randomPassword = randomPassword.substring(0, passwordLength);
+        }
       }
       break;
     
@@ -65,6 +69,10 @@ var generatePassword = function () {
         randomPassword += alphabetString.charAt(Math.floor(Math.random() * alphabetString.length));
         randomPassword += alphabetString.charAt(Math.floor(Math.random() * alphabetString.length)).toUpperCase();
         randomPassword += numberString.charAt(Math.floor(Math.random() * numberString.length));
+        //if randomPassword becomes too long, cut it to desired length
+        if (randomPassword.length > passwordLength) {
+          randomPassword = randomPassword.substring(0, passwordLength);
+        }
       }
       break;
 
@@ -75,6 +83,10 @@ var generatePassword = function () {
         randomPassword += alphabetString.charAt(Math.floor(Math.random() * alphabetString.length)).toUpperCase();
         randomPassword += numberString.charAt(Math.floor(Math.random() * numberString.length));
         randomPassword += specialString.charAt(Math.floor(Math.random() * specialString.length));
+        //if randomPassword becomes too long, cut it to desired length
+        if (randomPassword.length > passwordLength) {
+          randomPassword = randomPassword.substring(0, passwordLength);
+        }
       }
       break;
   }
