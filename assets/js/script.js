@@ -1,12 +1,15 @@
 // Assignment code here
 
+var alphabetString = "abcdefghijklmnopqrstuvwxyz";
+var numberString = "1234567890";
+var specialString = "!#$%&'()*+,-./:;<=>?@^_`{|}~";
+
 var pickLength = function() {
   //prompt for password length, must be between 8 and 128 characters
   var promptLength = window.prompt('Select a password length at least 8 characters and no longer than 128 characters.');
 
   //validate input
   if (8 <= promptLength && promptLength <= 128) {
-    console.log("acceptable criteria");
     return promptLength;
   } else {
     //if they didn't pick a valid length, alert them and try again
@@ -23,7 +26,6 @@ var pickCharacters = function() {
 
   //validate input
   if(promptCharacters === 1 || promptCharacters === 2 || promptCharacters === 3 || promptCharacters === 4) {
-    console.log("acceptable criteria");
     return promptCharacters;
   } else {
     //if they didn't pick a valid option, alert them and try again
@@ -35,12 +37,48 @@ var pickCharacters = function() {
 var generatePassword = function () {
   //variable for the generated password
   var randomPassword = "";
+
+  //variables for password criteria
   var passwordLength = pickLength();
-  console.log(passwordLength);
   var passwordCharacters = pickCharacters();
-  console.log(passwordCharacters);
+
   //generate password that matches selected criteria
-  //display password in alert or write to page
+  switch(passwordCharacters) {
+    //lowercase string password
+    case 1:
+      while(randomPassword.length < passwordLength) {
+        randomPassword += alphabetString.charAt(Math.floor(Math.random() * alphabetString.length));
+      }
+      break;
+    
+    //lowercase and uppercase string password
+    case 2:
+      while(randomPassword.length < passwordLength){
+        randomPassword += alphabetString.charAt(Math.floor(Math.random() * alphabetString.length));
+        randomPassword += alphabetString.charAt(Math.floor(Math.random() * alphabetString.length)).toUpperCase();
+      }
+      break;
+    
+    //lowercase, uppercase, and numerical string password
+    case 3:
+      while(randomPassword.length < passwordLength){
+        randomPassword += alphabetString.charAt(Math.floor(Math.random() * alphabetString.length));
+        randomPassword += alphabetString.charAt(Math.floor(Math.random() * alphabetString.length)).toUpperCase();
+        randomPassword += numberString.charAt(Math.floor(Math.random() * numberString.length));
+      }
+      break;
+
+    //lowercase, uppercase, numerical, and special string password
+    case 4:
+      while(randomPassword.length < passwordLength){
+        randomPassword += alphabetString.charAt(Math.floor(Math.random() * alphabetString.length));
+        randomPassword += alphabetString.charAt(Math.floor(Math.random() * alphabetString.length)).toUpperCase();
+        randomPassword += numberString.charAt(Math.floor(Math.random() * numberString.length));
+        randomPassword += specialString.charAt(Math.floor(Math.random() * specialString.length));
+      }
+      break;
+  }
+   return randomPassword;
 }
 
 // Get references to the #generate element
